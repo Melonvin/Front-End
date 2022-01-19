@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Check if the native date input is supported</title>
+</head>
+
+<body></body>
+<script>
+  const ele = document.createElement("input");
+  ele.setAttribute("type", "date");
+  const invalidValue = "2022/!01/19";
+  ele.setAttribute("value", invalidValue);
+  ele.value = invalidValue;
+
+  console.log(ele.value);
+</script>
+
+</html>

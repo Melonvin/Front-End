@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Check if an element is a descendant of another</title>
+</head>
+
+<body>
+  <div id="grandfather">
+    <div id="father">
+      <div id="son"></div>
+    </div>
+    <div id="uncle"></div>
+  </div>
+</body>
+<script>
+  const grandfather = document.getElementById("grandfather");
+  const father = document.getElementById("father");
+  const son = document.getElementById("son");
+  const uncle = document.getElementById("uncle");
+  console.log(grandfather.contains(son));
+  console.log(uncle.contains(son));
+
+  function isDescendant(parent, child) {
+    let node = child.parentNode;
+    while (node) {
+      if (node === parent) {
+        return true;
+      }
+      node = node.parentNode;
+    }
+    return false;
+  }
+
+  console.log(isDescendant(uncle, son));
+</script>
+
+</html>

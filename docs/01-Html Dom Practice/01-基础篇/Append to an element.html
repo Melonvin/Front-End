@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Append to an element</title>
+</head>
+
+<body>
+  <ul id="father">
+    <li class="son">1</li>
+  </ul>
+
+  <button id="btn">append</button>
+</body>
+<script>
+  const ul = document.getElementById("father");
+  let index = 2;
+
+  const btn = document.getElementById("btn");
+  btn.addEventListener("click", () => {
+    const li = document.createElement("li");
+    li.innerHTML = index++;
+    ul.appendChild(li);
+  });
+</script>
+
+</html>

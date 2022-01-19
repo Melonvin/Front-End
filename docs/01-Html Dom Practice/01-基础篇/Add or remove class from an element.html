@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Add or remove class from an element</title>
+  <style>
+    .bg-pink {
+      background: pink;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="box" style="height: 100px; width: 100px; border: 1px solid black;"></div>
+
+  <button id="add">add class</button>
+  <button id="remove">remove class</button>
+</body>
+<script>
+  const addBtn = document.getElementById("add");
+  addBtn.addEventListener("click", () => {
+    const element = document.getElementById("box");
+    element.classList.add("bg-pink");
+  });
+
+  const removeBtn = document.getElementById("remove");
+  removeBtn.addEventListener("click", () => {
+    const element = document.getElementById("box");
+    element.classList.remove("bg-pink");
+  });
+</script>
+
+</html>

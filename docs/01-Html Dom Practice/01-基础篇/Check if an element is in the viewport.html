@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Check if an element is in the viewport
+  </title>
+  <style>
+    #box {
+      position: absolute;
+      left: -100px;
+      width: 100px;
+      height: 100px;
+      background: pink;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="box"></div>
+</body>
+<script>
+  const el = document.getElementById("box");
+  const rect = el.getBoundingClientRect();
+  console.log(
+    rect.left > 0 &&
+    rect.top > 0 &&
+    rect.bottom < window.innerHeight &&
+    rect.right < window.innerWidth
+  );
+</script>
+
+</html>
