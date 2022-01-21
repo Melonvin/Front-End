@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Count the number of characters of a textarea</title>
+</head>
+
+<body>
+  <textarea id="text" rows="5" cols="33" maxlength="200"></textarea>
+  <div id="info"></div>
+</body>
+<script>
+  const textarea = document.getElementById("text");
+  const info = document.getElementById("info");
+  textarea.addEventListener("input", () => {
+    const maxlength = textarea.getAttribute("maxlength");
+    const currentLength = textarea.value.length;
+    info.innerHTML = `${currentLength}/${maxlength}`;
+  });
+</script>
+
+</html>
