@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Create one time event handler</title>
+</head>
+
+<body>
+  <button id="btn">click</button>
+</body>
+<script>
+  const btn = document.getElementById("btn");
+  // btn.addEventListener(
+  //   "click",
+  //   () => {
+  //     console.log("hello");
+  //   },
+  //   { once: true }
+  // );
+  const handler = (e) => {
+    console.log("hello");
+    e.target.removeEventListener("click", handler);
+  };
+  btn.addEventListener("click", handler);
+</script>
+
+</html>
