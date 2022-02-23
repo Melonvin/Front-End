@@ -123,4 +123,147 @@ ReactDOM.render(
 
   注意`{}`不能省略
 
+[在线代码](https://codesandbox.io/s/serverless-moon-2lh6x1?file=/index.html)
+
 ## 3 组合组件
+
+组件可以在其输出中引用其他组件
+
+例如，我们可以创建一个可以多次渲染 `Welcome` 组件的 `App` 组件：
+
+```jsx
+function Welcome(props) {
+  return <h1>Hello, {props.name}</h1>;
+}
+
+function App() {
+  return (
+    <div>
+      <Welcome name="Sara" />
+      <Welcome name="Cahal" />
+      <Welcome name="Edite" />
+    </div>
+  );
+}
+
+ReactDOM.render(
+  <App />,
+  document.getElementById('root')
+);
+```
+
+这就可以让我们用同一组件来构建不同层次的新组件
+
+[在线代码](https://codesandbox.io/s/nervous-lamport-njkph4?file=/index.html)
+
+## 4 提取组件
+
+对于一个复杂的组件，我们应该尽量将其拆分为更小的组件，以提高其可维护性和可读性
+
+例如，参考如下 `Comment` 组件：
+
+```jsx
+function Comment(props) {
+  return (
+    <div className="Comment">
+      <div className="UserInfo">
+        <img className="Avatar"
+          src={props.author.avatarUrl}
+          alt={props.author.name}
+        />
+        <div className="UserInfo-name">
+          {props.author.name}
+        </div>
+      </div>
+      <div className="Comment-text">
+        {props.text}
+      </div>
+      <div className="Comment-date">
+        {formatDate(props.date)}
+      </div>
+    </div>
+  );
+}
+```
+
+该组件用于描述一个社交媒体网站上的评论功能，它接收 `author`（对象），`text` （字符串）以及 `date`（日期）作为 props。
+
+该组件由于嵌套的关系，变得难以维护，且很难复用它的各个部分。因此，让我们从中提取一些组件出来。
+
+首先，我们将提取 `Avatar` 组件：
+
+```jsx
+function Avatar(props) {
+  return (
+    <img className="Avatar"
+      src={props.user.avatarUrl}
+      alt={props.user.name}
+    />
+  );
+}
+```
+
+`Avatar` 不需知道它在 `Comment` 组件内部是如何渲染的。因此，我们给它的 props 起了一个更通用的名字：`user`，而不是 `author`。
+
+建议从组件自身的角度命名 props，而不是依赖于调用组件的上下文命名。
+
+现在可以在`Comment`中引用`Avatar`组件了：
+
+```jsx
+function Comment(props) {
+  return (
+    <div className="Comment">
+      <div className="UserInfo">
+        <Avatar user={props.author} />
+        <div className="UserInfo-name">
+          {props.author.name}
+        </div>
+      </div>
+      <div className="Comment-text">
+        {props.text}
+      </div>
+      <div className="Comment-date">
+        {formatDate(props.date)}
+      </div>
+    </div>
+  );
+}
+```
+
+接下来，我们将提取 `UserInfo` 组件，该组件在用户名旁渲染 `Avatar` 组件：
+
+```jsx
+function UserInfo(props) {
+  return (
+    <div className="UserInfo">
+      <Avatar user={props.user} />
+      <div className="UserInfo-name">
+        {props.user.name}
+      </div>
+    </div>
+  );
+}
+```
+
+进一步简化 `Comment` 组件：
+
+```jsx
+function Comment(props) {
+  return (
+    <div className="Comment">
+      <UserInfo user={props.author} />
+      <div className="Comment-text">
+        {props.text}
+      </div>
+      <div className="Comment-date">
+        {formatDate(props.date)}
+      </div>
+    </div>
+  );
+}
+```
+
+## 5 Props 的只读性
+
+> 组件无论是使用[函数声明还是通过 class 声明](https://zh-hans.reactjs.org/docs/components-and-props.html#function-and-class-components)，都决不能修改自身的 props。
+
