@@ -265,5 +265,7 @@ function Comment(props) {
 
 ## 5 Props 的只读性
 
+对于 props，React 有一个严格的规则：
+
 > 组件无论是使用[函数声明还是通过 class 声明](https://zh-hans.reactjs.org/docs/components-and-props.html#function-and-class-components)，都决不能修改自身的 props。
 
