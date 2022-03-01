@@ -10,9 +10,13 @@
 
 ## 1 定义组件
 
+在 React 中有两种组件，一种是**函数组件**，一种是**类组件**
+
 ### 1.1 函数组件
 
 定义组件最简单的方式就是编写 JavaScript 函数
+
+对 React 来说，能够返回一个 React 元素的 **函数** 就叫组件
 
 ```jsx
 function MyComponent() {
@@ -24,7 +28,9 @@ function MyComponent() {
 
 ### 1.2 class 组件
 
-定义 class 组件，需要继承 `React.Component`
+类组件的声明过程会比较繁琐一些，需要使用 class、extends 关键字，来继承`React.Component{}`
+
+`render()`函数会返回该类的实例要创建的元素。
 
 ```jsx
 class MyComponent extends React.Component {
@@ -33,8 +39,6 @@ class MyComponent extends React.Component {
     }
 }
 ```
-
-在 `React.Component` 的子类中有个必须定义的 [`render()`](https://react.docschina.org/docs/react-component.html#render) 函数，我们需要在该方法中返回构成组件的 JSX 表达式
 
 [在线代码](https://codesandbox.io/s/react-09-72egbz?file=/index.html:636-749)
 
