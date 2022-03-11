@@ -198,7 +198,7 @@ const div = (
 
 它被称为 **JSX**，是 JavaScript 的语法扩展
 
-事实上，每个 JSX 元素一个语法糖，它们最终还是会调用`React.createElement(component, props, ...children)` 方法来创建 React 元素。不过我们写起来更加简单且直观
+事实上，每个 JSX 元素是一个语法糖，它们最终还是会调用`React.createElement(component, props, ...children)` 方法来创建 React 元素。不过我们写起来更加简单且直观
 
 ## JSX 初体验
 
@@ -287,7 +287,3 @@ const div = (
 现在，元素可以正确的显示了
 
 [在线代码](https://codesandbox.io/s/react-03-zv613?file=/index.html)
-
-
-
-现在，我们已经学会了如何用 React 来创建元素和渲染元素，也初步了解了创建元素的方法的语法糖 JSX。
