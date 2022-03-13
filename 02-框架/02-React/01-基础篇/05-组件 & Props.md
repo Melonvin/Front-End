@@ -273,3 +273,64 @@ function Comment(props) {
 
 > 组件无论是使用[函数声明还是通过 class 声明](https://zh-hans.reactjs.org/docs/components-and-props.html#function-and-class-components)，都决不能修改自身的 props。
 
+## 6 计时器
+
+```jsx
+function tick() {
+  const element = (
+ 		<h2>当前时间： {new Date().toLocaleTimeString()}.</h2>
+  );
+  ReactDOM.render(element, document.getElementById('root'));
+}
+
+setInterval(tick, 1000);
+```
+
+这个例子中，每秒调用一次 tick 函数，页面会更新当前时间
+
+[在线代码](https://codesandbox.io/s/upbeat-austin-vrbn5t?file=/index.html)
+
+将它封装为一个组件：
+
+```jsx
+class Clock extends React.Component {
+  render() {
+    return <h2>现在时间：{new Date().toLocaleTimeString()}</h2>;
+  }
+}
+
+function tick() {
+  ReactDOM.render(<Clock />, document.getElementById("root"));
+}
+
+setInterval(tick, 1000);
+```
+
+我们将时间写死在了 JSX 中
+
+[在线代码](https://codesandbox.io/s/wonderful-dust-ddrh03?file=/index.html:636-894)
+
+如果我们想自己传入显示的内容：
+
+```jsx
+class Clock extends React.Component {
+  render() {
+    const time = this.props.time;
+    return <h2>现在时间：{time}</h2>;
+  }
+}
+
+function tick() {
+  ReactDOM.render(
+    <Clock time={new Date().toLocaleTimeString()} />,
+    document.getElementById("root")
+  );
+}
+
+setInterval(tick, 1000);
+```
+
+这样我们就可以控制显示的格式
+
+[在线代码](https://codesandbox.io/s/jovial-alex-exi33z?file=/index.html)
+
